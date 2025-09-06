@@ -76,7 +76,7 @@ proc_thread_pool_stratetry = 'SHARED_QUEUE'
 [[server.base.groups]]
 #default_timeout = '1s'
 #drop_connections_interval = '1h'
-network_type = 'TCP'
+network_type = 'IPoIB'
 services = [ 'MonitorCollector' ]
 use_independent_thread_pool = false
 
@@ -115,7 +115,7 @@ traffic_class = 0
 max_connections = 1
 
 [server.base.groups.listener]
-filter_list = []
+filter_list = ['ibs1']
 listen_port = {{ .Port }}
 listen_queue_depth = 4096
 rdma_listen_ethernet = true
