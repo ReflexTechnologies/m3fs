@@ -138,7 +138,7 @@ response_compression_threshold = '128KB'
 [[server.base.groups]]
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
-network_type = 'IBoIP'
+network_type = 'IPoIB'
 services = [ 'Core' ]
 use_independent_thread_pool = true
 
@@ -179,7 +179,7 @@ max_connections = 1
 
 [server.base.groups.listener]
 domain_socket_index = 1
-filter_list = ['ibs1'']
+filter_list = ['ibs1']
 listen_port = {{ .TCPListenPort }}
 listen_queue_depth = 4096
 rdma_accept_timeout = '15s'
