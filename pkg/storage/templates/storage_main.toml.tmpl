@@ -453,7 +453,8 @@ collect_all_fds = true
 create_engine_path = true
 space_info_cache_timeout = '5s'
 target_num_per_path = 0
-target_paths = {{ .TargetPaths }}
+# target_paths = {{ .TargetPaths }}
+target_paths = ["/storage/data1", "/storage/data2", "/storage/data3", "/storage/data4", "/storage/data5", "/storage/data6", "/storage/data7", "/storage/data8"]
 
 [server.targets.storage_target]
 force_persist = true

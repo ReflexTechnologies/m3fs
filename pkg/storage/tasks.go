@@ -84,7 +84,7 @@ func makeTargetPaths(diskNum int) string {
 	targets := make([]string, diskNum)
 	for i := 0; i < diskNum; i++ {
 		targets[i] = fmt.Sprintf(`"%s"`,
-			path.Join("/mnt", "3fsdata", "data"+strconv.Itoa(i), "3fs"))
+			path.Join("/storage", "data"+strconv.Itoa(i)))
 	}
 
 	return fmt.Sprintf("[%s]", strings.Join(targets, ","))
@@ -191,8 +191,8 @@ func (t *CreateStorageServiceTask) Init(r *task.Runtime, logger log.Interface) {
 					UseRdmaNetwork: true,
 					ExtraVolumes: []*external.VolumeArgs{
 						{
-							Source: path.Join(workDir, "3fsdata"),
-							Target: "/mnt/3fsdata",
+							Source: "/storage",
+							Target: "/storage",
 						},
 					},
 					ModelObjFunc: func(s *task.BaseStep) any {
