@@ -103,6 +103,7 @@ proc_thread_pool_stratetry = 'SHARED_QUEUE'
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
 network_type = 'IPoIB'
+#network_type = 'RDMA'
 services = [ 'StorageSerde' ]
 use_independent_thread_pool = false
 
@@ -144,10 +145,11 @@ max_connections = 1
 [server.base.groups.listener]
 domain_socket_index = 1
 filter_list = ['ibs1']
+#filter_list = ['']
 listen_port = {{ .RDMAListenPort }}
 listen_queue_depth = 4096
 rdma_accept_timeout = '15s'
-rdma_listen_ethernet = true
+rdma_listen_ethernet = false
 reuse_port = false
 
 [server.base.groups.processor]
@@ -160,7 +162,8 @@ response_compression_threshold = '128KB'
 [[server.base.groups]]
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
-network_type = 'IPoIB'
+#network_type = 'IPoIB'
+network_type = 'RDMA'
 services = [ 'Core' ]
 use_independent_thread_pool = true
 
@@ -202,10 +205,11 @@ max_connections = 1
 [server.base.groups.listener]
 domain_socket_index = 1
 filter_list = ['ibs1']
+#filter_list = ['']
 listen_port = {{ .TCPListenPort }}
 listen_queue_depth = 4096
 rdma_accept_timeout = '15s'
-rdma_listen_ethernet = true
+rdma_listen_ethernet = false
 reuse_port = false
 
 [server.base.groups.processor]
@@ -449,10 +453,10 @@ queue_size = 1024
 
 [server.targets]
 allow_disk_without_uuid = true
-collect_all_fds = false
+collect_all_fds = true
 create_engine_path = true
 space_info_cache_timeout = '5s'
-target_num_per_path = 1
+target_num_per_path = 6
 # target_paths = {{ .TargetPaths }}
 target_paths = ["/storage/data1/3fs", "/storage/data2/3fs", "/storage/data3/3fs", "/storage/data4/3fs", "/storage/data5/3fs", "/storage/data6/3fs", "/storage/data7/3fs", "/storage/data8/3fs"]
 

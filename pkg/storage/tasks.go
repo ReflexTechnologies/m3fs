@@ -84,7 +84,7 @@ func makeTargetPaths(diskNum int) string {
 	targets := make([]string, diskNum)
 	for i := 0; i < diskNum; i++ {
 		targets[i] = fmt.Sprintf(`"%s"`,
-			path.Join("/storage", "data"+strconv.Itoa(i)), "3fs")
+			path.Join("/storage", "data"+strconv.Itoa(i+1)), "3fs")
 	}
 
 	return fmt.Sprintf("[%s]", strings.Join(targets, ","))
