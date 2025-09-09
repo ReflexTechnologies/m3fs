@@ -102,8 +102,8 @@ proc_thread_pool_stratetry = 'SHARED_QUEUE'
 [[server.base.groups]]
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
-network_type = 'IPoIB'
-#network_type = 'RDMA'
+#network_type = 'IPoIB'
+network_type = 'RDMA'
 services = [ 'StorageSerde' ]
 use_independent_thread_pool = false
 

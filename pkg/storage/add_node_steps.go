@@ -497,7 +497,7 @@ func (s *prepareChangePlanStep) parseDataPlacementModel(ctx context.Context, mod
 	chainIDPrefix := s.Runtime.Cfg.Services.Storage.ChainIDPrefix
 	_, err := s.Em.Docker.Exec(ctx,
 		s.Runtime.Cfg.Services.Mgmtd.ContainerName,
-		"python3", "/opt/3fs/data_placement/src/setup/gen_chain_table.py",
+		"python3", "/opt/3fs/deploy/data_placement/src/setup/gen_chain_table.py",
 		"--chain_table_type", "CR",
 		"--node_id_begin", "10001",
 		"--node_id_end", strconv.Itoa(10000+storNum),
@@ -622,7 +622,7 @@ func (s *prepareChangePlanStep) execDataPlacementScript(
 	replicaFactor := s.Runtime.Cfg.Services.Storage.ReplicationFactor
 	targetNumPerDisk := s.Runtime.Cfg.Services.Storage.TargetNumPerDisk
 	args := []string{
-		"python3", "/opt/3fs/data_placement/src/model/data_placement.py",
+		"python3", "/opt/3fs/deploy/data_placement/src/model/data_placement.py",
 		"-ql", "-relax", "-type", "CR", "--num_nodes", strconv.Itoa(nodeNum),
 		"--replication_factor", strconv.Itoa(replicaFactor),
 		"--min_targets_per_disk", strconv.Itoa(targetNumPerDisk),

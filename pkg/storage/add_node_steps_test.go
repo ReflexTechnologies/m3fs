@@ -129,7 +129,7 @@ func (s *prepareChangePlanStepSuite) mockRunStep() []model.ChangePlanStep {
 	s.MockDocker.On("Exec", container, "bash",
 		[]string{
 			"-c",
-			"\"python3 /opt/3fs/data_placement/src/model/data_placement.py " +
+			"\"python3 /opt/3fs/deploy/data_placement/src/model/data_placement.py " +
 				"-ql -relax -type CR " +
 				"--num_nodes 2 " +
 				"--replication_factor " + strconv.Itoa(replicationFactor) + " " +
@@ -140,7 +140,7 @@ func (s *prepareChangePlanStepSuite) mockRunStep() []model.ChangePlanStep {
 	model2File := "output/RebalanceTrafficModel-v_3-b_48-r_32-k_2-λ_16-lb_1-ub_0"
 	s.MockDocker.On("Exec", container, "bash",
 		[]string{"-c",
-			"\"python3 /opt/3fs/data_placement/src/model/data_placement.py " +
+			"\"python3 /opt/3fs/deploy/data_placement/src/model/data_placement.py " +
 				"-ql -relax -type CR " +
 				"--num_nodes " + strconv.Itoa(nodeNum) + " " +
 				"--replication_factor " + strconv.Itoa(replicationFactor) + " " +

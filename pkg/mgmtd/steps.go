@@ -229,7 +229,7 @@ func (s *initUserAndChainStep) initUser(ctx context.Context) (token string, err 
 
 func (s *initUserAndChainStep) initChainFiles(ctx context.Context) error {
 	output, err := s.Em.Docker.Exec(ctx, s.Runtime.Services.Mgmtd.ContainerName,
-		"python3", "/opt/3fs/data_placement/src/model/data_placement.py",
+		"python3", "/opt/3fs/deploy/data_placement/src/model/data_placement.py",
 		"-ql", "-relax", "-type", "CR",
 		"--num_nodes", strconv.Itoa(len(s.Runtime.Services.Storage.Nodes)),
 		"--replication_factor", strconv.Itoa(s.Runtime.Services.Storage.ReplicationFactor),
@@ -251,7 +251,7 @@ func (s *initUserAndChainStep) initChainFiles(ctx context.Context) error {
 	}
 
 	_, err = s.Em.Docker.Exec(ctx, s.Runtime.Services.Mgmtd.ContainerName,
-		"python3", "/opt/3fs/data_placement/src/setup/gen_chain_table.py",
+		"python3", "/opt/3fs/deploy/data_placement/src/setup/gen_chain_table.py",
 		"--chain_table_type", "CR",
 		"--node_id_begin", "10001",
 		"--node_id_end", strconv.Itoa(10000+len(s.Runtime.Services.Storage.Nodes)),
