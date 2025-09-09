@@ -76,7 +76,7 @@ proc_thread_pool_stratetry = 'SHARED_QUEUE'
 [[server.base.groups]]
 #default_timeout = '1s'
 #drop_connections_interval = '1h'
-network_type = 'IPoIB'
+network_type = 'RDMA'
 services = [ 'MonitorCollector' ]
 use_independent_thread_pool = false
 

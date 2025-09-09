@@ -168,7 +168,7 @@ proc_thread_pool_stratetry = 'SHARED_QUEUE'
 [[server.base.groups]]
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
-network_type = 'IPoIB'
+network_type = 'RDMA'
 services = [ 'MetaSerde' ]
 use_independent_thread_pool = false
 
@@ -226,7 +226,7 @@ response_compression_threshold = '128KB'
 [[server.base.groups]]
 check_connections_interval = '1min'
 connection_expiration_time = '1day'
-network_type = 'IPoIB'
+network_type = 'RDMA'
 services = [ 'Core' ]
 use_independent_thread_pool = true
 
@@ -366,7 +366,7 @@ max_row_group_length = 100000
 trace_file_dir = '.'
 
 [server.meta.forward]
-addr_type = 'IPoIB'
+addr_type = 'RDMA'
 debug = true
 timeout = '10s'
 
