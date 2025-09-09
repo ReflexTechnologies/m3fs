@@ -19,6 +19,11 @@ The image includes:
 docker build -t open3fs/build:yyyymmdd -f Dockerfile .
 ```
 
+After building the image, you should push it to a public repository:
+```
+docker push open3fs/build:yyyymmdd
+```
+
 ## How to use
 
 1. Pull the image: `docker pull open3fs/3fs-build`
@@ -40,4 +45,28 @@ git config --global --add safe.directory /3fs
 ```
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 cmake --build build -j $(proc)
+```
+
+5. Copy the binaries /3fs into a proper place in /opt/3fs in the container
+cp -r /3fs /opt/3fs
+cp -r /3fs/build/bin /opt/3fs/bin
+
+
+6. Exit the container:
+```
+exit
+```
+
+7. Commit your changes to create a new image. First, find your container's ID:
+```
+docker ps -a
+```
+Then, commit the container, replacing `<CONTAINER_ID>` with the actual ID from the previous command:
+```
+docker commit <CONTAINER_ID> reflex/3fs:yyyymmdd
+```
+
+8. Push your new image to a public repository:
+```
+docker push reflex/3fs:yyyymmdd
 ```
