@@ -209,7 +209,7 @@ max_connections = 1
 
 [server.base.groups.listener]
 domain_socket_index = 1
-filter_list = ['ibs1']
+filter_list = ['ibs1','ibp41s0f0','bond0','ibs4']
 listen_port = {{ .RDMAListenPort }}
 listen_queue_depth = 4096
 rdma_accept_timeout = '15s'
@@ -267,7 +267,7 @@ max_connections = 1
 
 [server.base.groups.listener]
 domain_socket_index = 1
-filter_list = ['ibs1']
+filter_list = ['ibs1','ibp41s0f0','bond0','ibs4']
 listen_port = {{ .TCPListenPort }}
 listen_queue_depth = 4096
 rdma_accept_timeout = '15s'
