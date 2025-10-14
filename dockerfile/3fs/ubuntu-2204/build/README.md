@@ -23,6 +23,13 @@ DOCKER_BUILDKIT=1 docker build --network-host -t open3fs/build:yyyymmdd -f Docke
 ## How to use
 
 1. Pull the image: `docker pull open3fs/3fs-build`
+1.5 Download 3fs repo
+```
+git clone https://github.com/deepseek-ai/3fs your/3fs/path
+cd your/3fs/path
+git submodule update --init --recursive
+./patches/apply.sh
+```
 
 2. Create a container and mount your 3fs source code directory:
 
