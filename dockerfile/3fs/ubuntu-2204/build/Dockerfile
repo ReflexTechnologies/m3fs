@@ -59,6 +59,4 @@ RUN mkdir /tmp/3fs && \
 RUN mkdir /3fs
 RUN mkdir /var/log/3fs
 
-RUN /root/.local/bin/uv pip install --system --no-cache -r /opt/3fs/deploy/data_placement/requirements.txt
-
 WORKDIR /3fs
