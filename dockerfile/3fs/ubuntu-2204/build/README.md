@@ -63,16 +63,5 @@ cp -r /3fs/build/bin /opt/3fs/bin
 exit
 ```
 
-7. Commit your changes to create a new image. First, find your container's ID:
-```
-docker ps -a
-```
-Then, commit the container, replacing `<CONTAINER_ID>` with the actual ID from the previous command:
-```
-docker commit <CONTAINER_ID> reflex/3fs:yyyymmdd
-```
+# All the changes binaries,etc will be inside the /your/path/3fs
 
-8. Push your new image to a public repository:
-```
-docker push reflex/3fs:yyyymmdd
-```
