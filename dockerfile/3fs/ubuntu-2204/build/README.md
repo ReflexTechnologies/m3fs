@@ -16,7 +16,7 @@ The image includes:
 ## Build
 
 ```
-docker build -t open3fs/build:yyyymmdd -f Dockerfile .
+DOCKER_BUILDKIT=1 docker build --network-host -t open3fs/build:yyyymmdd -f Dockerfile .
 ```
 
 
@@ -27,7 +27,7 @@ docker build -t open3fs/build:yyyymmdd -f Dockerfile .
 2. Create a container and mount your 3fs source code directory:
 
 ```
-docker run -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
+DOCKER_BUILDKIT=1 docker run --network-host -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
 ```
 
 3. **Maybe you need to set git safe.directory firstly**:
