@@ -19,10 +19,6 @@ The image includes:
 docker build -t open3fs/build:yyyymmdd -f Dockerfile .
 ```
 
-After building the image, you should push it to a public repository:
-```
-docker push open3fs/build:yyyymmdd
-```
 
 ## How to use
 
@@ -43,6 +39,7 @@ git config --global --add safe.directory /3fs
 4. Build 3fs within the container using the provided tools and dependencies.
 
 ```
+/root/.local/bin/uv pip install --system --no-cache -r /3fs/deploy/data_placement/requirements.txt
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 cmake --build build -j $(proc)
 ```
