@@ -57,4 +57,6 @@ RUN mkdir /tmp/3fs && \
         rm -rf /tmp/3fs
 
 RUN mkdir /3fs
+RUN mkdir /var/log/3fs
+
 WORKDIR /3fs

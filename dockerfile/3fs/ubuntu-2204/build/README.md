@@ -16,17 +16,25 @@ The image includes:
 ## Build
 
 ```
-docker build -t open3fs/build:yyyymmdd -f Dockerfile .
+DOCKER_BUILDKIT=1 docker build --network-host -t open3fs/build:yyyymmdd -f Dockerfile .
 ```
+
 
 ## How to use
 
 1. Pull the image: `docker pull open3fs/3fs-build`
+1.5 Download 3fs repo
+```
+git clone https://github.com/deepseek-ai/3fs your/3fs/path
+cd your/3fs/path
+git submodule update --init --recursive
+./patches/apply.sh
+```
 
 2. Create a container and mount your 3fs source code directory:
 
 ```
-docker run -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
+docker run --network-host -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
 ```
 
 3. **Maybe you need to set git safe.directory firstly**:
@@ -38,6 +46,22 @@ git config --global --add safe.directory /3fs
 4. Build 3fs within the container using the provided tools and dependencies.
 
 ```
+/root/.local/bin/uv pip install --system --no-cache -r /3fs/deploy/data_placement/requirements.txt
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 cmake --build build -j $(proc)
 ```
+
+5. Copy the binaries /3fs into a proper place in /opt/3fs in the container
+```
+cp -r /3fs /opt/3fs
+cp -r /3fs/build/bin /opt/3fs/bin
+```
+
+
+6. Exit the container:
+```
+exit
+```
+
+# All the changes binaries,etc will be inside the /your/path/3fs
+
