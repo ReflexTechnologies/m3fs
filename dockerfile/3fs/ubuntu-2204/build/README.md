@@ -34,7 +34,7 @@ git submodule update --init --recursive
 2. Create a container and mount your 3fs source code directory:
 
 ```
-DOCKER_BUILDKIT=1 docker run --network-host -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
+docker run --network-host -it -v /path/to/your/3fs/source:/3fs open3fs/3fs-build
 ```
 
 3. **Maybe you need to set git safe.directory firstly**:
