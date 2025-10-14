@@ -52,8 +52,10 @@ cmake --build build -j $(proc)
 ```
 
 5. Copy the binaries /3fs into a proper place in /opt/3fs in the container
+```
 cp -r /3fs /opt/3fs
 cp -r /3fs/build/bin /opt/3fs/bin
+```
 
 
 6. Exit the container:
