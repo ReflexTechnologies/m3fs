@@ -115,7 +115,7 @@ traffic_class = 0
 max_connections = 1
 
 [server.base.groups.listener]
-filter_list = ['ibs1']
+filter_list = ['ibs1','ibp41s0f0','bond0','ibs4']
 listen_port = {{ .Port }}
 listen_queue_depth = 4096
 rdma_listen_ethernet = true
