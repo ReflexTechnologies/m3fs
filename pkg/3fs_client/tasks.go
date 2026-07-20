@@ -126,6 +126,7 @@ func (t *Create3FSClientServiceTask) Init(r *task.Runtime, logger log.Interface)
 					WorkDir:        workDir,
 					ExtraVolumes:   runContainerVolumes,
 					UseRdmaNetwork: true,
+					PidHost:        true,
 					ModelObjFunc: func(s *task.BaseStep) any {
 						return &model.FuseClient{
 							Name:           r.Services.Client.ContainerName,

@@ -387,6 +387,7 @@ type run3FSContainerStep struct {
 	serviceWorkDir string
 	extraVolumes   []*external.VolumeArgs
 	useRdmaNetwork bool
+	pidHost        bool
 	modelObjFunc   func(r *task.BaseStep) any
 }
 
@@ -428,6 +429,7 @@ func (s *run3FSContainerStep) Execute(ctx context.Context) error {
 		Image:         img,
 		Name:          &s.containerName,
 		HostNetwork:   true,
+		PidHost:       s.pidHost,
 		RestartPolicy: external.ContainerRestartPolicyUnlessStopped,
 		Privileged:    common.Pointer(true),
 		Ulimits: map[string]string{
@@ -505,6 +507,7 @@ type Run3FSContainerStepSetup struct {
 	WorkDir        string
 	ExtraVolumes   []*external.VolumeArgs
 	UseRdmaNetwork bool
+	PidHost        bool
 	ModelObjFunc   func(r *task.BaseStep) any
 	DeleteIfExists bool
 }
@@ -519,6 +522,7 @@ func NewRun3FSContainerStepFunc(setup *Run3FSContainerStepSetup) func() task.Ste
 			serviceWorkDir: setup.WorkDir,
 			extraVolumes:   setup.ExtraVolumes,
 			useRdmaNetwork: setup.UseRdmaNetwork,
+			pidHost:        setup.PidHost,
 			modelObjFunc:   setup.ModelObjFunc,
 			deleteIfExists: setup.DeleteIfExists,
 		}
