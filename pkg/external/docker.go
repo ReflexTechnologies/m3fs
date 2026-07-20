@@ -58,6 +58,7 @@ func (de *dockerExternal) GetContainer(name string) string {
 type RunArgs struct {
 	Image         string
 	HostNetwork   bool
+	PidHost       bool
 	Entrypoint    *string
 	Rm            *bool
 	Command       []string
@@ -96,6 +97,9 @@ func (de *dockerExternal) Run(ctx context.Context, args *RunArgs) (out string, e
 	}
 	if args.HostNetwork {
 		params = append(params, "--network", "host")
+	}
+	if args.PidHost {
+		params = append(params, "--pid", "host")
 	}
 	for key, val := range args.Envs {
 		params = append(params, "-e", fmt.Sprintf("%s=%s", key, val))
